@@ -1,7 +1,8 @@
 from http import HTTPStatus
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 from uuid import uuid4
 
+user = Blueprint('user', __name__)
 
 user_storage = {
     "e7b3d405ac9a45758109f3daee0adfae": {
@@ -17,7 +18,7 @@ user_storage = {
 app = Flask(__name__)
 
 # create user
-@app.post('/api/users/')
+@user.post('/')
 def add_user():
     try:
         user = request.json
@@ -28,13 +29,13 @@ def add_user():
     return user, HTTPStatus.CREATED
 
 # get all users
-@app.get('/api/users/')
+@user.get('/')
 def get_users():
     users = [user for _, user in user_storage.items()]
     return jsonify(users), HTTPStatus.OK
 
 # get user by uid
-@app.get('/api/users/<uid>')
+@user.get('/<uid>')
 def get_by_id(uid):
     user = user_storage.get(uid)
     if not user:
@@ -42,7 +43,7 @@ def get_by_id(uid):
     return user, HTTPStatus.OK
 
 # update user
-@app.put('/api/users/<uid>')
+@user.put('/<uid>')
 def update_user(uid):
     if uid not in user_storage:
         return {"message": "user not found"}, HTTPStatus.NOT_FOUND
@@ -54,7 +55,7 @@ def update_user(uid):
     return user, HTTPStatus.OK
 
 # delete user
-@app.delete('/api/users/<uid>')
+@user.delete('/<uid>')
 def delete_user(uid):
     if uid not in user_storage:
         return {"message": "user not found"}, HTTPStatus.NOT_FOUND
