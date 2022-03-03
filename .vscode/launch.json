@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "backend",
+            "name": "frontend",
             "type": "python",
             "request": "launch",
-            "module": "backend",
+            "module": "frontend",
             "console": "internalConsole",
         }
     ]
