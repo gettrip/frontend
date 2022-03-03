@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 def add_user():
     try:
         user = request.json
-    except (werkzeug.exceptions.BadRequest, requests.RequestException, ValueError):
+    except werkzeug.exceptions.BadRequest:
         return {"message": "user's data is incorrect"}, HTTPStatus.BAD_REQUEST
     user['uid'] = uuid4().hex
     user_storage[user['uid']] = user
@@ -54,7 +54,7 @@ def update_user(uid):
         return {"message": "user not found"}, HTTPStatus.NOT_FOUND
     try:
         user = request.json
-    except (werkzeug.exceptions.BadRequest, requests.RequestException, ValueError):
+    except werkzeug.exceptions.BadRequest:
         return {"message": "user's data is incorrect"},  HTTPStatus.BAD_REQUEST
     user_storage[user['uid']] = user
     return user, HTTPStatus.OK
