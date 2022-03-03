@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from flask import Flask, jsonify, request, Blueprint
 from uuid import uuid4
+import requests
 
 user = Blueprint('user', __name__)
 
@@ -22,7 +23,7 @@ app = Flask(__name__)
 def add_user():
     try:
         user = request.json
-    except (ValueError):
+    except (requests.RequestException, ValueError):
         return {"message": "user's data is incorrect"}, HTTPStatus.BAD_REQUEST
     user['uid'] = uuid4().hex
     user_storage[user['uid']] = user
@@ -49,7 +50,7 @@ def update_user(uid):
         return {"message": "user not found"}, HTTPStatus.NOT_FOUND
     try:
         user = request.json
-    except (ValueError):
+    except (requests.RequestException, ValueError):
         return {"message": "user's data is incorrect"},  HTTPStatus.BAD_REQUEST
     user_storage[user['uid']] = user
     return user, HTTPStatus.OK
