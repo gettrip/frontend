@@ -1,7 +1,10 @@
 from http import HTTPStatus
+from http.client import BAD_REQUEST
 from flask import Flask, jsonify, request, Blueprint
 from uuid import uuid4
 import requests
+import logging
+import werkzeug.exceptions
 
 user = Blueprint('user', __name__)
 
@@ -17,13 +20,14 @@ user_storage = {
 }
 
 app = Flask(__name__)
+logger = logging.getLogger(__name__)
 
 # create user
 @user.post('/')
 def add_user():
     try:
         user = request.json
-    except (requests.RequestException, ValueError):
+    except (werkzeug.exceptions.BadRequest, requests.RequestException, ValueError):
         return {"message": "user's data is incorrect"}, HTTPStatus.BAD_REQUEST
     user['uid'] = uuid4().hex
     user_storage[user['uid']] = user
@@ -50,7 +54,7 @@ def update_user(uid):
         return {"message": "user not found"}, HTTPStatus.NOT_FOUND
     try:
         user = request.json
-    except (requests.RequestException, ValueError):
+    except (werkzeug.exceptions.BadRequest, requests.RequestException, ValueError):
         return {"message": "user's data is incorrect"},  HTTPStatus.BAD_REQUEST
     user_storage[user['uid']] = user
     return user, HTTPStatus.OK
