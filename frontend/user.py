@@ -2,7 +2,6 @@ from http import HTTPStatus
 from http.client import BAD_REQUEST
 from flask import Flask, jsonify, request, Blueprint
 from uuid import uuid4
-import requests
 import logging
 import werkzeug.exceptions
 
