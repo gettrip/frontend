@@ -15,7 +15,6 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
     logger.info("Hello, world!")
     app.run()
-    index()
 
 
 if __name__ == '__main__':
