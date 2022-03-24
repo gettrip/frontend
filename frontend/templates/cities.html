@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Cities</title>
+    </head>
+    <body>
+        <h1>All cities</h1>
+        <ul>
+            {% for city in cities %}
+                <li> {{city.city_name}} </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
