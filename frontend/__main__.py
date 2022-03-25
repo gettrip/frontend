@@ -3,22 +3,18 @@ import logging
 from flask import Flask, render_template
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+from .clients.cities import CitiesClient
+
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-
-cities = [
-    {'uid': 1, 'city_name': 'Yekaterinburg'},
-    {'uid': 2, 'city_name': 'Moscow'},
-    {'uid': 3, 'city_name': 'Toronto'},
-    {'uid': 4, 'city_name': 'London'},
-    {'uid': 5, 'city_name': 'Prague'},
-]
 
 env = Environment(
     loader=PackageLoader('frontend', 'templates'),
     autoescape=select_autoescape(['html', 'xml'])
 )
+
+endpoint = 'http://localhost:8080/api/v1'
 
 
 @app.route('/')
@@ -28,8 +24,10 @@ def index():
 
 @app.route('/cities')
 def show_cities():
+    cities_client = CitiesClient(endpoint)
+    all_cities = cities_client.get_all()
     template = env.get_template('cities.html')
-    return template.render(cities=cities)
+    return template.render(cities=all_cities)
 
 
 def main():
