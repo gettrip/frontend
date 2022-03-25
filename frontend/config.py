@@ -1,1 +1,4 @@
-ENDPOINT = 'http://localhost:8080/api/v1'
+import os
+
+
+endpoint = os.environ['ENDPOINT']
