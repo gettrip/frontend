@@ -4,6 +4,7 @@ from flask import Flask, render_template
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from frontend.clients.cities import CitiesClient
+from frontend.clients.routes import RoutesClient
 from frontend.config import endpoint
 
 logger = logging.getLogger(__name__)
@@ -27,6 +28,17 @@ def show_cities():
     all_cities = cities_client.get_all()
     template = env.get_template('cities.html')
     return template.render(cities=all_cities)
+
+
+@app.route('/cities/<city>')
+def show_routes(city):
+    routes_client = RoutesClient()
+    city_routes = routes_client.get_all(city)
+    template = env.get_template('routes.html')
+    return template.render(
+        city=city_routes['city_name'],
+        routes=city_routes['routes'],
+    )
 
 
 def main():
