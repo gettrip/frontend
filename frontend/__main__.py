@@ -35,7 +35,10 @@ def show_routes(city):
     routes_client = RoutesClient()
     city_routes = routes_client.get_all(city)
     template = env.get_template('routes.html')
-    return template.render(city_routes=city_routes)
+    return template.render(
+        city=city_routes['city_name'],
+        routes=city_routes['routes'],
+    )
 
 
 def main():
