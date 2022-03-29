@@ -41,7 +41,8 @@ def show_places_for_route(cid, rid):
                 'Музей «Бункер»',
                 'Музей марципана',
                 'Кенигсбергский собор'],
-            'description': 'Музейная программа в городе может быть настолько насыщенной, что и целого дня не хватит для основных экспозиций.'
+            'description': 'Музейная программа в городе может быть настолько насыщенной,\
+             что и целого дня не хватит для основных экспозиций.'
         },
         '2': {
             'name': 'Three paks',
@@ -56,8 +57,16 @@ def show_places_for_route(cid, rid):
     }
     route = routes[rid]
     city_name = 'Калининград'
+    route_name = route['name']
+    route_description = route['description']
+    places = route['places']
     template = env.get_template('route.html')
-    return template.render(route=route, city_name=city_name)
+    return template.render(
+        city_name=city_name,
+        route_name=route_name,
+        route_description=route_description,
+        places=places
+    )
 
 
 def main():
