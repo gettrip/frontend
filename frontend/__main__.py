@@ -18,6 +18,7 @@ env = Environment(
 
 cities_client = CitiesClient(endpoint)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')

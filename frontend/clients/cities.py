@@ -1,4 +1,5 @@
 import httpx
+
 from frontend.clients.schemas import City
 
 
