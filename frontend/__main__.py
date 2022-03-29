@@ -5,11 +5,14 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 from frontend.clients.cities import CitiesClient
 from frontend.clients.routes import RoutesClient
-from frontend.config import endpoint
+from frontend.config import load_from_env
 
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+
+app_config = load_from_env()
+endpoint = app_config.endpoint
 
 env = Environment(
     loader=PackageLoader('frontend', 'templates'),
@@ -31,8 +34,8 @@ def show_cities():
     return template.render(cities=[city.dict() for city in all_cities])
 
 
-@app.route('/cities/<cid>/routes/<rid>/')
-def show_places_for_route(cid, rid):
+@app.route('/cities/<city_id>/routes/<route_id>/')
+def show_places_for_route(city_id, route_id):
     routes = {
         '1': {
             'name': 'Музеи Калининграда за 1 день',
@@ -57,12 +60,12 @@ def show_places_for_route(cid, rid):
             'description': 'Two museums and a park'
         },
     }
-    route = routes[rid]
+    route = routes[route_id]
     city_name = 'Калининград'
     route_name = route['name']
     route_description = route['description']
     places = route['places']
-    template = env.get_template('route.html')
+    template = env.get_template('places_on_route.html')
     return template.render(
         city_name=city_name,
         route_name=route_name,
