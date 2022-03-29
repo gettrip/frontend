@@ -16,6 +16,7 @@ env = Environment(
     autoescape=select_autoescape(['html', 'xml'])
 )
 
+cities_client = CitiesClient(endpoint)
 
 @app.route('/')
 def index():
@@ -24,7 +25,6 @@ def index():
 
 @app.route('/cities')
 def show_cities():
-    cities_client = CitiesClient(endpoint)
     all_cities = cities_client.get_all()
     template = env.get_template('cities.html')
     return template.render(cities=[city.dict() for city in all_cities])
