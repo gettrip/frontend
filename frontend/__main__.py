@@ -30,14 +30,15 @@ def show_cities():
     return template.render(cities=all_cities)
 
 
-@app.route('/cities/<city>')
-def show_routes(city):
-    routes_client = RoutesClient()
-    city_routes = routes_client.get_all(city)
+@app.route('/cities/<city_id>')
+def show_routes(city_id):
+    routes_client = RoutesClient(endpoint)
+    city = routes_client.get_city(city_id)
+    routes = routes_client.get_all(city_id)
     template = env.get_template('routes.html')
     return template.render(
-        city=city_routes['city_name'],
-        routes=city_routes['routes'],
+        city_name=city.name,
+        city_routes=[route.dict() for route in routes],
     )
 
 
