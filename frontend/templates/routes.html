@@ -10,22 +10,22 @@
                 <div class="col mb-4">
                     <div class="card text-white bg-secondary text-center">
                         <div class="card-body">
-                            <h5 class="card-title">{{ city }}</h5>
+                            <h5 class="card-title">{{ city_name }}</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-3 justify-content-md-center">
-                {% for route in routes %}
+            {% for route in city_routes %}
                 <div class="col mb-4" >
                     <div class="card h-100 text-dark bg-info text-center">
                         <div class="card-body">
-                            <h5 class="card-title fs-2">{{ route }}</h5>
+                            <h5 class="card-title fs-2">{{ route.name }}</h5>
                             <p class="card-text fs-4">Route description</p>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+            {% endfor %}
             </div>
         </div>
     </body>
