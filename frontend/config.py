@@ -1,4 +1,14 @@
 import os
 
+from pydantic import BaseModel
 
-endpoint = os.environ['ENDPOINT']
+
+class AppConfig(BaseModel):
+    endpoint: str
+
+
+def load_from_env() -> AppConfig:
+    endpoint = os.environ['ENDPOINT']
+    return AppConfig(
+        endpoint=endpoint,
+    )

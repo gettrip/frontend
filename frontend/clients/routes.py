@@ -1,6 +1,8 @@
 import logging
+
 import httpx
-from frontend.clients.schemas import Route, City
+
+from frontend.clients.schemas import City, Route
 
 logger = logging.getLogger(__name__)
 
