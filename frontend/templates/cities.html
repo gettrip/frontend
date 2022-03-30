@@ -1,13 +1,19 @@
-<html>
-    <head>
-        <title>Cities</title>
-    </head>
-    <body>
-        <h1>All cities</h1>
-        <ul>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Select city:</h2>
+
+    <div class="list-group">
+        <div class="row row-cols-1 row-cols-md-4">
+            <div class="col mb-4">
             {% for city in cities %}
-                <li> {{ city.name }} </li>
+            <a href="{{ city.uid }}" class="list-group-item list-group-item-action list-group-item-warning">
+            <p class="fs-4">{{ city.name }}</p>
+            </a>
             {% endfor %}
-        </ul>
-    </body>
-</html>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
