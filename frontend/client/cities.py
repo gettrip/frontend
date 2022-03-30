@@ -11,10 +11,9 @@ class CitiesClient:
     def get_all(self) -> list[City]:
         res = httpx.get(f'{self.url}/')
         cities = res.json()
-        print(cities)
         return [City(**city) for city in cities]
 
-    def get_city(self, city_id) -> City:
+    def get_by_id(self, city_id: int) -> City:
         res = httpx.get(f'{self.url}/{city_id}')
         city = City(**res.json())
         return city

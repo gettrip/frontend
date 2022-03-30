@@ -7,8 +7,8 @@ view = Blueprint('routes', __name__)
 
 @view.get('/<city_id>')
 def show_routes(city_id):
-    city = cities_client.get_city(city_id)
-    routes = routes_client.get_all(city_id)
+    city = cities_client.get_by_id(city_id)
+    routes = routes_client.get_for_city(city_id)
 
     return render_template(
         'routes.html',
