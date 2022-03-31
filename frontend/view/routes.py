@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from frontend.client.api_client import gettrip
+from frontend.client.api import gettrip
 
 
 view = Blueprint('routes', __name__)

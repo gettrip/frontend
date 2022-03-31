@@ -1,6 +1,6 @@
 from frontend.client.cities import CitiesClient
 from frontend.client.routes import RoutesClient
-from frontend.config import endpoint
+from frontend.config import config
 
 
 class GetTripClient:
@@ -10,4 +10,4 @@ class GetTripClient:
         self.routes = RoutesClient(endpoint)
 
 
-gettrip = GetTripClient(endpoint)
+gettrip = GetTripClient(config.endpoint)
