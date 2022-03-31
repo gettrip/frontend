@@ -1,12 +1,9 @@
 from flask import Blueprint, render_template
 
-from frontend.client.api_client import GetTripClient
-from frontend.config import endpoint
+from frontend.client.api_client import gettrip
 
 
 view = Blueprint('routes', __name__)
-
-gettrip = GetTripClient(endpoint)
 
 
 @view.get('/<city_id>')
