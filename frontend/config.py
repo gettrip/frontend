@@ -12,3 +12,6 @@ def load_from_env() -> AppConfig:
     return AppConfig(
         endpoint=endpoint,
     )
+
+
+config = load_from_env()
