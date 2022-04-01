@@ -7,6 +7,7 @@ class City(BaseModel):
 
 
 class Route(BaseModel):
+    uid: int
     name: str
     city_id: int
 

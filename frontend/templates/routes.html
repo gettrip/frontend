@@ -2,13 +2,9 @@
 
 {% block content %}
 
-    <div class="row row-cols-1 row-cols-md-6">
+    <div class="row">
         <div class="col mb-4">
-            <div class="card text-white bg-secondary text-center">
-                <div class="card-body">
-                    <h5 class="card-title">{{ city_name }}</h5>
-                </div>
-            </div>
+            <a href='/cities' class="btn btn-secondary btn-lg">{{ city_name }}</a>
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 justify-content-md-center">
@@ -16,9 +12,11 @@
             <div class="col mb-4" >
                 <div class="card h-100 text-dark bg-info text-center">
                     <div class="card-body">
-                        <h5 class="card-title fs-2">{{ route.name }}</h5>
+                        <h3 class="card-title">{{ route.name }}</h3>
                         <p class="card-text fs-4">Route description</p>
+                        <a href="{{city_id}}/routes/{{ route.uid }}/places" class="btn btn-success">Перейти</a>
                     </div>
+
                 </div>
             </div>
         {% endfor %}
