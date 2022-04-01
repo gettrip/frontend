@@ -18,6 +18,7 @@ def show_places_for_route(city_id, route_id):
     return render_template(
         'places_on_route.html',
         city_name=city_name,
+        city_id=city_id,
         places=places,
-        route_name=route_name
+        route_name=route_name,
     )
