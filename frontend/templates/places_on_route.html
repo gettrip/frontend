@@ -10,13 +10,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                {{ route_name }}
-                </div>
-            </div>
-        </div>
     </div>
     <br>
     <div class="container">
@@ -29,7 +22,7 @@
                         <div class="card shadow-sm">
                           <img src="..." class="card-img-top" alt="...">
                           <div class="card-body">
-                            <h5 class="card-title"> {{ place }} </h5>
+                            <h5 class="card-title"> {{ place.name }} </h5>
                             <p class="card-text"> Описание кратко </p>
                             <button type="button" class="btn btn-link"> Подробнее </button>
                           </div>
@@ -43,8 +36,6 @@
                 <div class="card shadow-sm " >
                     <div class="card-body">
                       <h5 class="card-title"> {{ route_name }} </h5>
-                      <p class="card-text"> {{ route_description }} </p>
-                      <a href="#" class="btn btn btn-success">Сохранить</a>
                     </div>
                 </div>
             </div>

@@ -1,44 +1,23 @@
 from flask import Blueprint, render_template
 
+from frontend.client.api import gettrip
+
 view = Blueprint('places', __name__)
 
 
-@view.route('/<route_id>/')
+@view.route('/<route_id>/places')
 def show_places_for_route(city_id, route_id):
-    routes = {
-        '1': {
-            'name': 'Музеи Калининграда за 1 день',
-            'places': [
-                'Музей янтаря',
-                'Музей Мирового океана',
-                'Историко-художественный музей',
-                'Музей «Бункер»',
-                'Музей марципана',
-                'Кенигсбергский собор'],
-            'description': 'Музейная программа в городе может быть настолько насыщенной,\
-             что и целого дня не хватит для основных экспозиций.'
-        },
-        '2': {
-            'name': 'Three paks',
-            'places': ['park1', 'park2', 'park3'],
-            'description': 'Three paks'
-        },
-        '3': {
-            'name': 'Two museums and a park',
-            'places': ['museum1', 'park2', 'museum3'],
-            'description': 'Two museums and a park'
-        },
-    }
-    route = routes[route_id]
-    city_name = 'Калининград'
-    route_name = route['name']
-    route_description = route['description']
-    places = route['places']
+    route = gettrip.routes.get_by_id(route_id)
+    route_name = route.name
+
+    city = gettrip.cities.get_by_id(city_id)
+    city_name = city.name
+
+    places = gettrip.places.get_for_route(route_id)
 
     return render_template(
         'places_on_route.html',
         city_name=city_name,
-        route_name=route_name,
-        route_description=route_description,
         places=places,
+        route_name=route_name
     )
