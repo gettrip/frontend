@@ -8,3 +8,8 @@ class City(BaseModel):
 
 class Route(BaseModel):
     name: str
+    city_id: int
+
+
+class Place(BaseModel):
+    name: str
