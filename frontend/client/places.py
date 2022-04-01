@@ -10,5 +10,6 @@ class PlacesClient:
 
     def get_for_route(self, route_id: int) -> list[Place]:
         res = httpx.get(f'{self.url}/{route_id}/places/')
+        res.raise_for_status()
         places = res.json()
         return [Place(**place) for place in places]
