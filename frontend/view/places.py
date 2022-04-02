@@ -16,7 +16,7 @@ def show_places_for_route(city_id, route_id):
     places = gettrip.places.get_for_route(route_id)
 
     return render_template(
-        'places_on_route.html',
+        'route_places.html',
         city_name=city_name,
         city_id=city_id,
         places=places,

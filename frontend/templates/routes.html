@@ -10,13 +10,13 @@
     <div class="row row-cols-1 row-cols-md-3 justify-content-md-center">
         {% for route in city_routes %}
             <div class="col mb-4" >
-                <div class="card h-100 text-dark bg-info text-center">
-                    <div class="card-body">
-                        <h3 class="card-title">{{ route.name }}</h3>
-                        <p class="card-text fs-4">Route description</p>
-                        <a href="{{city_id}}/routes/{{ route.uid }}/places" class="btn btn-success">Перейти</a>
-                    </div>
-
+                <div class="card text-dark bg-info text-center">
+                    <a href="{{ url_for('places.show_places_for_route', city_id=city_id, route_id=route.uid) }}" class="btn btn-info">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ route.name }}</h3>
+                            <p class="card-text fs-4">Route description</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         {% endfor %}
