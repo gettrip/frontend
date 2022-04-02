@@ -14,5 +14,6 @@ def show_routes(city_id):
     return render_template(
         'routes.html',
         city_name=city.name,
+        city_id=city.uid,
         city_routes=[route.dict() for route in routes],
     )
