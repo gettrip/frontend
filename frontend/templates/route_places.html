@@ -2,13 +2,14 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="col mb-4">
+    <div class="row justify-content-start">
+        <div class="col-4">
             <a href="/cities" class="btn btn-secondary btn-lg">{{ city_name }}</a>
-            <a href="/cities/{{city_id}}" class="btn btn-secondary btn-lg">{{ route_name }}</a>
         </div>
     </div>
+
     <br>
+
     <div class="container">
         <div class="row">
             <div class="col">
@@ -20,19 +21,29 @@
                     {% else %}
                     {% for place in places %}
                     <div class="col">
-                        <div class="card shadow-sm">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title"> {{ place.name }} </h5>
-                            <p class="card-text"> Описание кратко </p>
-                            <button type="button" class="btn btn-link"> Подробнее </button>
-                          </div>
-                        </div>
+                        <a href="#">
+                            <div class="card shadow-sm">
+                                <img src="https://proprikol.ru/wp-content/uploads/2019/09/kartinki-russkogo-muzeya-17-1.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"> {{ place.name }} </h5>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     {% endfor %}
                     {% endif %}
                 </div>
             </div>
+
+            <div class="col">
+                <div class="card shadow-sm " >
+                    <div class="card-body">
+                      <img src="http://www.utro-tur.ru/assets/images/obzor/xovptuddtwi.jpg"  class="card-img-top" alt="...">
+                      <h5 class="card-title"> {{ route_name }} </h5>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
