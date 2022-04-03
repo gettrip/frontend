@@ -4,36 +4,63 @@
 
     <div class="row">
         <div class="col mb-4">
-            <a href="/cities" class="btn btn-secondary btn-lg">{{ city_name }}</a>
-            <a href="/cities/{{city_id}}" class="btn btn-secondary btn-lg">{{ route_name }}</a>
+            <a href="/cities" >{{ city_name }}</a>
         </div>
     </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    {% if not places %}
-                        <div class="col">
-                            <h4>Coming soon...</h4>
-                        </div>
-                    {% else %}
-                    {% for place in places %}
-                    <div class="col">
-                        <div class="card shadow-sm">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title"> {{ place.name }} </h5>
-                            <p class="card-text"> Описание кратко </p>
-                            <button type="button" class="btn btn-link"> Подробнее </button>
-                          </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                </div>
+
+    <div class="container-fluid" style="height:auto; align-content: center;">
+        <div class="card bg-white text-black"  >
+            <img src="https://www.thesun.co.uk/wp-content/uploads/2018/06/NINTCHDBPICT0004167663421.jpg?strip=all&quality=100&w=1200&h=800&crop=1" style="height:50vh; width:100; object-fit: cover" class=" opacity-100" alt="..." >
+            <div class="card-img-overlay text-white">
+                <h2 class="card-title fw-bold" > {{ route_name }} </h5>
+            </div>
+            <div class="card-body">
+                <h3 class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h3>
+                <p class="card-text">Last updated 3 mins ago</p>
             </div>
         </div>
     </div>
+
+    <br>
+
+    <div class="row" style="height: 100vh;">
+
+        <div class="col-md-auto" style="max-width: 35vh;">
+            <nav class="navbar bg-light">
+                <div class="container-fluid">
+                    <ul class="navbar-nav">
+                    {% for place in places %}
+                        <li class="nav-item fw-bold">
+                            <a class="nav-link" href="#{{ place.name }}"> {{ place.name }} </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="col col-lg">
+            <div class="container" style="height: 100vh; overflow-y: scroll; position: relative"   data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="10">
+            {% for place in places %}
+                <div class="card mb-3" id="{{ place.name }}">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://sib-catholic.ru/wp-content/uploads/2018/01/1-16.jpg" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ place.name }}</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+<br>
 
 {% endblock %}
