@@ -9,6 +9,8 @@ view = Blueprint('places', __name__)
 def show_places_for_route(city_id, route_id):
     route = gettrip.routes.get_by_id(route_id)
     route_name = route.name
+    route_image = route.image
+    route_description = route.description
 
     city = gettrip.cities.get_by_id(city_id)
     city_name = city.name
@@ -21,4 +23,6 @@ def show_places_for_route(city_id, route_id):
         city_id=city_id,
         places=places,
         route_name=route_name,
+        route_image=route_image,
+        route_description=route_description
     )
