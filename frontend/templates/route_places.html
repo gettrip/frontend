@@ -4,18 +4,13 @@
 
     <div class="row">
         <div class="col mb-4">
-            <a href="/cities/{{ city_id }}" >{{ city_name }}</a>
+            <a href="{{ url_for('routes.show_routes', city_id=city_id) }}" class="btn btn-secondary btn-lg"> {{ route_name }} </a>
         </div>
     </div>
 
     <div class="container-fluid" style="height:auto;">
         <div class="card text-white">
             <img src="{{ route_image }}" style="height:50vh; width:100; object-fit: cover" class=" opacity-100" alt="..." >
-            <div class="card-img-overlay d-flex align-items-end">
-                <div class="card bg-primary p-2" style="--bs-bg-opacity: .75;">
-                    <h2 class="card-text" > {{ route_name }} </h2>
-                </div>
-            </div>
         </div>
         <div class="card-body">
             <h4 class="card-text"> {{ route_description }}</h4>
