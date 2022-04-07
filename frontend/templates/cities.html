@@ -2,18 +2,25 @@
 
 {% block content %}
 
-    <h2>Select city:</h2>
+<h2> Куда ты хочешь поехать? </h2>
 
-    <div class="list-group">
-        <div class="row row-cols-1 row-cols-md-4">
-            <div class="col mb-4">
-            {% for city in cities %}
-            <a href="{{ city.uid }}" class="list-group-item list-group-item-action list-group-item-warning">
-            <p class="fs-4">{{ city.name }}</p>
-            </a>
-            {% endfor %}
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for city in cities %}
+    <a href="{{ city.uid }}">
+    <div class="container-fluid" style="height:auto;">
+        <div class="card"  >
+            <img src="{{ city.image }}" style="height:30vh; width:100; object-fit: cover" class=" opacity-100" alt="..." >
+            <div class="card-img-overlay d-flex align-items-end">
+                <div class="card bg-secondary" style="--bs-bg-opacity: .70;">
+                    <h2 class="card-text text-white" > {{ city.name }} </h2>
+                </div>
             </div>
         </div>
     </div>
+    </a>
+    {% endfor %}
+</div>
 
 {% endblock %}

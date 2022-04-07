@@ -2,37 +2,59 @@
 
 {% block content %}
 
-    <div class="row justify-content-start">
-        <div class="col-4">
-            <a href="/cities" class="btn btn-secondary btn-lg">{{ city_name }}</a>
+    <div class="row">
+        <div class="col mb-4">
+            <a href="{{ url_for('routes.show_routes', city_id=city_id) }}" class="btn btn-secondary btn-lg"> {{ route_name }} </a>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="height:auto;">
+        <div class="card text-white">
+            <img src="{{ route_image }}" style="height:50vh; width:100; object-fit: cover" class=" opacity-100" alt="..." >
+        </div>
+        <div class="card-body">
+            <h4 class="card-text"> {{ route_description }}</h4>
+            <p class="card-text">Длительность маршрута около 5 часов</p>
         </div>
     </div>
 
     <br>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    {% if not places %}
-                        <div class="col">
-                            <h4>Coming soon...</h4>
-                        </div>
-                    {% else %}
+    <div class="row" style="height: 100vh;">
+
+        <div class="col-md-auto" style="max-width: 35vh;">
+            <nav class="navbar bg-light">
+                <div class="container">
+                    <ul class="navbar-nav">
                     {% for place in places %}
-                    <div class="col">
-                        <a href="#">
-                            <div class="card shadow-sm">
-                                <img src="https://proprikol.ru/wp-content/uploads/2019/09/kartinki-russkogo-muzeya-17-1.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"> {{ place.name }} </h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                        <li class="nav-item fw-bold">
+                            <a class="nav-link" href="#{{ place.name }}"> {{ place.name }} </a>
+                        </li>
                     {% endfor %}
-                    {% endif %}
+                    </ul>
                 </div>
+            </nav>
+        </div>
+
+        <div class="col col-lg">
+            <div class="container" style="height: 100vh; overflow-y: scroll; position: relative"   data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="10">
+            {% for place in places %}
+                <div class="card mb-3" id="{{ place.name }}">
+                    <div class="row g-0">
+                        <div class="col-md-4 ">
+                            <br>
+                            <img src="{{ place. image }}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ place.name }}</h5>
+                                <p class="card-text"> {{ place.description }} </p>
+                                <p class="card-text"><small class="text-muted">Приблизительное время посещения 1 час</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
             </div>
 
             <div class="col">
@@ -46,5 +68,7 @@
 
         </div>
     </div>
+
+<br>
 
 {% endblock %}
