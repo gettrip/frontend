@@ -2,13 +2,16 @@
 
 {% block content %}
 
-    <div class="row">
+    <div class="row justify-content-between">
         <div class="col mb-4">
             <a href="{{ url_for('routes.show_routes', city_id=city_id) }}" class="btn btn-secondary btn-lg"> {{ route_name }} </a>
+            <button onclick="window.print()" class="btn btn-outline-secondary btn-lg noprint"> PDF </button>
         </div>
     </div>
 
+
     <div class="container-fluid" style="height:auto;">
+
         <div class="card text-white">
             <img src="{{ route_image }}" style="height:50vh; width:100; object-fit: cover" class=" opacity-100" alt="..." >
         </div>
@@ -20,9 +23,9 @@
 
     <br>
 
-    <div class="row" style="height: 100vh;">
+    <div class="row" >
 
-        <div class="col-md-auto" style="max-width: 35vh;">
+        <div class="col-md-auto noprint" style="max-width: 35vh;">
             <nav class="navbar bg-light">
                 <div class="container">
                     <ul class="navbar-nav">
@@ -37,7 +40,7 @@
         </div>
 
         <div class="col col-lg">
-            <div class="container" style="height: 100vh; overflow-y: scroll; position: relative"   data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="10">
+            <div class="container" style="height: auto; overflow-y: auto; position: relative"  data-bs-target=".navbar" data-bs-offset="10">
             {% for point in route_points %}
                 {% if point.distance != 0 %}
                 Расстояние до следующей точки маршрута {{ point.distance }} метров
