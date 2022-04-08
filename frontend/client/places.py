@@ -1,6 +1,6 @@
 import httpx
 
-from frontend.schemas import Place
+from frontend.schemas import RoutePoint
 
 
 class PlacesClient:
@@ -8,8 +8,8 @@ class PlacesClient:
     def __init__(self, url: str):
         self.url = f'{url}/routes'
 
-    def get_for_route(self, route_id: int) -> list[Place]:
-        res = httpx.get(f'{self.url}/{route_id}/places/')
+    def get_points(self, route_id: int) -> list[RoutePoint]:
+        res = httpx.get(f'{self.url}/{route_id}/points/')
         res.raise_for_status()
-        places = res.json()
-        return [Place(**place) for place in places]
+        points = res.json()
+        return [RoutePoint(**point) for point in points]
