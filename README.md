@@ -2,22 +2,30 @@
 
 ## Install dependencies
 
-Linux/Mac OS
+### One-time action
 
 ```bash
-source .venv/bin/activate
-pip install -r requirements.txt
+pip install poetry
+poetry config virtualenvs.in-project true
+source .env\Scripts\activate
 ```
 
-Windows
+### For each projet
 
 ```bash
-.venv/Scripts/activate
-pip install -r requirements.txt
+poetry init
+poetry install
 ```
 
 ## Usage
 
 ```bash
-python -m frontend
+make run
+```
+
+## Resources used
+
+```bash
+sqlalchemy - lib. Work with different DBMS
+pydantic - lib. Data validation and settings management
 ```
