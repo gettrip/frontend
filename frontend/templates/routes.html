@@ -7,7 +7,7 @@
             <a href="{{ url_for('cities.show_cities') }}" class="btn btn-secondary btn-lg">{{ city_name }}</a>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-md-center">
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
         {% for route in city_routes %}
             <a href="{{ url_for('places.show_places_for_route', city_id=city_id, route_id=route.uid) }}">
                 <div class="container-fluid" style="height:auto;">
