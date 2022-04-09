@@ -13,9 +13,17 @@ class Route(BaseModel):
     city_id: int
     image: str
     description: str
+    duration: int
 
 
 class Place(BaseModel):
     name: str
     image: str
     description: str
+    duration: int
+
+
+class RoutePoint(BaseModel):
+    position: int
+    distance: int
+    place: Place

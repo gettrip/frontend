@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <h4 class="card-text"> {{ route_description }}</h4>
-            <p class="card-text">Длительность маршрута около 5 часов</p>
+            <p class="card-text">Длительность маршрута около {{ route_duration }} часов</p>
         </div>
     </div>
 
@@ -29,9 +29,9 @@
             <nav class="navbar bg-light">
                 <div class="container">
                     <ul class="navbar-nav">
-                    {% for place in places %}
+                        {% for point in route_points %}
                         <li class="nav-item fw-bold">
-                            <a class="nav-link" href="#{{ place.name }}"> {{ place.name }} </a>
+                            <a class="nav-link" href="#{{ point.place.name }}"> {{ point.place.name }} </a>
                         </li>
                     {% endfor %}
                     </ul>
@@ -41,18 +41,21 @@
 
         <div class="col col-lg">
             <div class="container" style="height: auto; overflow-y: auto; position: relative"  data-bs-target=".navbar" data-bs-offset="10">
-            {% for place in places %}
-                <div class="card mb-3" id="{{ place.name }}">
+            {% for point in route_points %}
+                {% if point.distance != 0 %}
+                Расстояние до следующей точки маршрута {{ point.distance }} метров
+                {% endif %}
+                <div class="card mb-3" id="{{ point.place.name }}">
                     <div class="row g-0">
                         <div class="col-md-4 ">
                             <br>
-                            <img src="{{ place.image }}" class="img-fluid rounded-start" alt="...">
+                            <img src="{{ point.place.image }}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{ place.name }}</h5>
-                                <p class="card-text"> {{ place.description }} </p>
-                                <p class="card-text"><small class="text-muted">Приблизительное время посещения 1 час</small></p>
+                                <h5 class="card-title">{{ point.place.name }}</h5>
+                                <p class="card-text"> {{ point.place.description }} </p>
+                                <p class="card-text"><small class="text-muted">Приблизительное время посещения {{ point.place.duration }} минут</small></p>
                             </div>
                         </div>
                     </div>
