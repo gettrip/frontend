@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<h2> Куда ты хочешь поехать? </h2>
+<div class="row">
+    <div class="col mb-4">
+        <h2> <span class="badge bg-light text-dark"> Куда ты хочешь поехать? </span> </h2>
+    </div>
+</div>
 
-<br>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for city in cities %}
