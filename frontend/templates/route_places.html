@@ -2,13 +2,16 @@
 
 {% block content %}
 
-    <div class="row justify-content-between">
-        <div class="col mb-4">
-            <a href="{{ url_for('routes.show_routes', city_id=city_id) }}" class="btn btn-secondary btn-lg"> {{ route_name }} </a>
+    <div class="row row-cols-auto">
+        <div class="col">
+            <a href="{{ url_for('routes.show_routes', city_id=city_id) }}">
+                <h2> <span class="badge bg-light text-dark">{{ route_name }}</span> </h2>
+            </a>
+        </div>
+        <div class="col">
             <button onclick="window.print()" class="btn btn-outline-secondary btn-lg noprint"> PDF </button>
         </div>
     </div>
-
 
     <div class="container-fluid" style="height:auto;">
 
