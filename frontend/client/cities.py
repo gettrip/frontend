@@ -15,7 +15,7 @@ class CitiesClient:
         return [City(**city) for city in cities]
 
     def get_by_id(self, city_id: int) -> City:
-        res = httpx.get(f'{self.url}/{city_id}')
+        res = httpx.get(f'{self.url}/{city_id}', follow_redirects=True)
         res.raise_for_status()
         city = City(**res.json())
         return city

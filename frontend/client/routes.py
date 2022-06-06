@@ -15,7 +15,7 @@ class RoutesClient:
         return [Route(**route) for route in routes]
 
     def get_by_id(self, route_id: int) -> Route:
-        res = httpx.get(f'{self.url}/routes/{route_id}')
+        res = httpx.get(f'{self.url}/routes/{route_id}', follow_redirects=True)
         res.raise_for_status()
         route = Route(**res.json())
         return route
